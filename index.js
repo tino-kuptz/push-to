@@ -14,7 +14,7 @@ import { checkForInvalidDontDelete, checkForInvalidDontOverride } from './lib/sk
  */
 const parseFilesystemFromEnv = (prefix) => {
     // Get the path from the environment variable
-    const path = process.env[`${prefix}`];
+    const path = process.env[`${prefix}_PATH`];
     if (!path) {
         throw new Error(`${prefix} path is not set`);
     }
