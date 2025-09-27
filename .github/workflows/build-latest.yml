@@ -27,9 +27,9 @@ jobs:
       - name: Build
         uses: docker/build-push-action@v2
         with:
+          platforms: linux/amd64,linux/arm64,linux/arm/v8
           context: .
           file: Dockerfile
-          platforms: linux/amd64
           push: true
           tags: ghcr.io/tino-kuptz/push-to:latest
           build-args: |
