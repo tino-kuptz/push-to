@@ -1,22 +1,23 @@
-# push-to
-> [!INFO]
+# tino-kuptz/push-to
+> [!NOTE]
 > This is still work in progress and in a very early stage
 > I already use it, but please be aware that it isn't bulletproof yet
+
 As I was unable to find an all-in-one solution for pushing to remote targets, I wrote one on my own.  
 It can push to:
 - local targets (using relative or absolute paths)  
 - FTP(s)
 - SFTP
 
-It can also load from all of it.
+It can also load from all of those.
 # Core concept
-> [!IMPORTANT]
+> [!CAUTION]
 > Please read this carefully. This plugin deletes files in the target in case they are not present in the source.
 > In case you want to keep e.g. config files in the target folder, you need to explicitly state that.
 
 Because I plan to use it to deploy a lot of static websites, it does always do the following steps:
 1. create additional directories
-2. upload asset files (see `lib/createPlan` `getAssetExtensions()`) replacing existing ones
+2. upload asset files (see `lib/createPlan`:`getAssetExtensions()`) replacing existing ones
 3. upload non-assets ("logic") files replacing existing ones
 4. delete non-asset files that aren't in the source directory
 5. delete asset files that aren't in the source directory
@@ -41,6 +42,7 @@ steps:
   image: ghcr.io/tino-kuptz/push-to:latest
   settings:
     source_path: .output/public
+    # source_path: /drone/src/.output/public
     target_path: sftp://my-public-server.com/test
     # target_path: ftp://<host>:<port>/<path>
     # target_path: sftp://<host>:<port>/<path>
@@ -56,7 +58,7 @@ steps:
     # dont_delete_target_files: *.log
 ```
 # Global properties
-> [!INFO]
+> [!NOTE]
 > When using in drone ci, you need to remove the prefix "plugin_" of these. 
 > Use `dry_run: true` in settings, DO NOT use `PLUGIN_DRY_RUN: true`
 ## Testing first
