@@ -144,14 +144,14 @@ FTP over a **unencrypted** connection
 ### as source
 ```ini
 PLUGIN_SOURCE_PATH=ftp://example.com/httpdocs/prod
-SOURCE_USERNAME=test
-SOURCE_PASSWORD=i.am.secure
+PLUGIN_SOURCE_USERNAME=test
+PLUGIN_SOURCE_PASSWORD=i.am.secure
 ```
 ### as target
 ```ini
 PLUGIN_TARGET_PATH=ftp://example.com:21
-TARGET_USERNAME=test
-TARGET_PASSWORD=i.am.secure
+PLUGIN_TARGET_USERNAME=test
+PLUGIN_TARGET_PASSWORD=i.am.secure
 ```
 ## FTPS
 FTP over an **encrypted** connection.  
@@ -159,30 +159,30 @@ Similar to ftp, except for the additional property `IGNORE_SSL_TRUST` (default: 
 ### as source
 ```ini
 PLUGIN_SOURCE_PATH=ftps://example.com:21/httpdocs/prod
-SOURCE_USERNAME=test
-SOURCE_PASSWORD=i.am.secure
+PLUGIN_SOURCE_USERNAME=test
+PLUGIN_SOURCE_PASSWORD=i.am.secure
 # SOURCE_IGNORE_SSL_TRUST=false
 ```
 ### as target
 ```ini
 PLUGIN_TARGET_PATH=ftps://example.com/release
-TARGET_USERNAME=test
-TARGET_PASSWORD=i.am.secure
-TARGET_IGNORE_SSL_TRUST=true
+PLUGIN_TARGET_USERNAME=test
+PLUGIN_TARGET_PASSWORD=i.am.secure
+PLUGIN_TARGET_IGNORE_SSL_TRUST=true
 ```
 ## SFTP
 SSH file transfer
 ### as source
 ```ini
 PLUGIN_SOURCE_PATH=sftp://example.com:22/httpdocs/prod
-SOURCE_USERNAME=test
-SOURCE_PASSWORD=i.am.secure
+PLUGIN_SOURCE_USERNAME=test
+PLUGIN_SOURCE_PASSWORD=i.am.secure
 ```
 ### as target
 ```ini
 PLUGIN_TARGET_PATH=sftp://example.com
-TARGET_USERNAME=test
-TARGET_PASSWORD=i.am.secure
+PLUGIN_TARGET_USERNAME=test
+PLUGIN_TARGET_PASSWORD=i.am.secure
 ```
 # Development
 ## Local build
