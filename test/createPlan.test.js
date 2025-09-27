@@ -10,9 +10,9 @@ describe('createPlan', () => {
         targetFs = new MockFileSystem('/test/target');
 
         // Clear environment variables
-        delete process.env.DONT_DELETE_TARGET_FILES;
-        delete process.env.DONT_OVERRIDE_TARGET_FILES;
-        delete process.env.ASSETS_EXTENSIONS;
+        delete process.env.PLUGIN_DONT_DELETE_TARGET_FILES;
+        delete process.env.PLUGIN_DONT_OVERRIDE_TARGET_FILES;
+        delete process.env.PLUGIN_ASSETS_EXTENSIONS;
     });
 
     // Helper function to get all steps from a plan
@@ -223,7 +223,7 @@ describe('createPlan', () => {
 
     describe('Asset vs Logic File Classification', () => {
         beforeEach(() => {
-            process.env.ASSETS_EXTENSIONS = '.css,.js,.png,.jpg';
+            process.env.PLUGIN_ASSETS_EXTENSIONS = '.css,.js,.png,.jpg';
         });
 
         it('should classify files with asset extensions as assets', async () => {

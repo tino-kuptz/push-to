@@ -34,22 +34,22 @@ const parseFilesystemFromEnv = (prefix) => {
 
 (async () => {
     try {
-        if (process.env.DRY_RUN) {
+        if (process.env.PLUGIN_DRY_RUN) {
             logger.info('Dry run mode enabled. Changes will not be applied to the target.');
         }
 
         logger.info('Checking source and target file systems');
-        const sourceFsConfig = parseFilesystemFromEnv('SOURCE');
-        const targetFsConfig = parseFilesystemFromEnv('TARGET');
+        const sourceFsConfig = parseFilesystemFromEnv('PLUGIN_SOURCE');
+        const targetFsConfig = parseFilesystemFromEnv('PLUGIN_TARGET');
 
         // Validate skip file patterns before proceeding
         logger.info('Validating skip file patterns');
         if (!checkForInvalidDontDelete()) {
-            logger.error('Invalid patterns in DONT_DELETE_TARGET_FILES');
+            logger.error('Invalid patterns in PLUGIN_DONT_DELETE_TARGET_FILES');
             process.exit(1);
         }
         if (!checkForInvalidDontOverride()) {
-            logger.error('Invalid patterns in DONT_OVERRIDE_TARGET_FILES');
+            logger.error('Invalid patterns in PLUGIN_DONT_OVERRIDE_TARGET_FILES');
             process.exit(1);
         }
 

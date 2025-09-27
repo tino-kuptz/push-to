@@ -10,9 +10,9 @@ describe('Skip Files Integration Tests', () => {
         targetFs = new MockFileSystem('/test/target');
         
         // Clear environment variables
-        delete process.env.DONT_DELETE_TARGET_FILES;
-        delete process.env.DONT_OVERRIDE_TARGET_FILES;
-        delete process.env.ASSETS_EXTENSIONS;
+        delete process.env.PLUGIN_DONT_DELETE_TARGET_FILES;
+        delete process.env.PLUGIN_DONT_OVERRIDE_TARGET_FILES;
+        delete process.env.PLUGIN_ASSETS_EXTENSIONS;
     });
 
     // Helper function to get all steps from a plan
@@ -49,7 +49,7 @@ describe('Skip Files Integration Tests', () => {
             });
 
             // Set environment variable to protect .env files
-            process.env.DONT_DELETE_TARGET_FILES = '**/.env';
+            process.env.PLUGIN_DONT_DELETE_TARGET_FILES = '**/.env';
 
             const plan = await createPlan(sourceFs, targetFs, '/test/source', '/test/target');
 
@@ -80,7 +80,7 @@ describe('Skip Files Integration Tests', () => {
                 }
             });
 
-            process.env.DONT_DELETE_TARGET_FILES = 'backup/**';
+            process.env.PLUGIN_DONT_DELETE_TARGET_FILES = 'backup/**';
 
             const plan = await createPlan(sourceFs, targetFs, '/test/source', '/test/target');
 
@@ -110,7 +110,7 @@ describe('Skip Files Integration Tests', () => {
                 }
             });
 
-            process.env.DONT_DELETE_TARGET_FILES = '**/.env,**.config,backup/**';
+            process.env.PLUGIN_DONT_DELETE_TARGET_FILES = '**/.env,**.config,backup/**';
 
             const plan = await createPlan(sourceFs, targetFs, '/test/source', '/test/target');
 
@@ -140,7 +140,7 @@ describe('Skip Files Integration Tests', () => {
                 }
             });
 
-            process.env.DONT_DELETE_TARGET_FILES = '**/.env';
+            process.env.PLUGIN_DONT_DELETE_TARGET_FILES = '**/.env';
 
             const plan = await createPlan(sourceFs, targetFs, '/test/source', '/test/target');
 
@@ -178,7 +178,7 @@ describe('Skip Files Integration Tests', () => {
                 }
             });
 
-            process.env.DONT_OVERRIDE_TARGET_FILES = '*.env';
+            process.env.PLUGIN_DONT_OVERRIDE_TARGET_FILES = '*.env';
 
             const plan = await createPlan(sourceFs, targetFs, '/test/source', '/test/target');
 
@@ -208,7 +208,7 @@ describe('Skip Files Integration Tests', () => {
                 }
             });
 
-            process.env.DONT_OVERRIDE_TARGET_FILES = '**.config';
+            process.env.PLUGIN_DONT_OVERRIDE_TARGET_FILES = '**.config';
 
             const plan = await createPlan(sourceFs, targetFs, '/test/source', '/test/target');
 
@@ -239,7 +239,7 @@ describe('Skip Files Integration Tests', () => {
                 }
             });
 
-            process.env.DONT_OVERRIDE_TARGET_FILES = 'worker/**/.env';
+            process.env.PLUGIN_DONT_OVERRIDE_TARGET_FILES = 'worker/**/.env';
 
             const plan = await createPlan(sourceFs, targetFs, '/test/source', '/test/target');
 
@@ -271,7 +271,7 @@ describe('Skip Files Integration Tests', () => {
                 }
             });
 
-            process.env.DONT_OVERRIDE_TARGET_FILES = '**/.env,**.config,backup/**';
+            process.env.PLUGIN_DONT_OVERRIDE_TARGET_FILES = '**/.env,**.config,backup/**';
 
             const plan = await createPlan(sourceFs, targetFs, '/test/source', '/test/target');
 
@@ -299,7 +299,7 @@ describe('Skip Files Integration Tests', () => {
                 }
             });
 
-            process.env.DONT_OVERRIDE_TARGET_FILES = '**/.env';
+            process.env.PLUGIN_DONT_OVERRIDE_TARGET_FILES = '**/.env';
 
             const plan = await createPlan(sourceFs, targetFs, '/test/source', '/test/target');
 
@@ -339,8 +339,8 @@ describe('Skip Files Integration Tests', () => {
             });
 
             // Protect .env from deletion and override
-            process.env.DONT_DELETE_TARGET_FILES = '**/.env';
-            process.env.DONT_OVERRIDE_TARGET_FILES = '**/.env';
+            process.env.PLUGIN_DONT_DELETE_TARGET_FILES = '**/.env';
+            process.env.PLUGIN_DONT_OVERRIDE_TARGET_FILES = '**/.env';
 
             const plan = await createPlan(sourceFs, targetFs, '/test/source', '/test/target');
 
@@ -384,8 +384,8 @@ describe('Skip Files Integration Tests', () => {
             });
 
             // Complex patterns
-            process.env.DONT_DELETE_TARGET_FILES = '**/.env,backup/**,*.log';
-            process.env.DONT_OVERRIDE_TARGET_FILES = '**/.env,**.config,backup/**';
+            process.env.PLUGIN_DONT_DELETE_TARGET_FILES = '**/.env,backup/**,*.log';
+            process.env.PLUGIN_DONT_OVERRIDE_TARGET_FILES = '**/.env,**.config,backup/**';
 
             const plan = await createPlan(sourceFs, targetFs, '/test/source', '/test/target');
 
@@ -431,8 +431,8 @@ describe('Skip Files Integration Tests', () => {
                 }
             });
 
-            process.env.DONT_DELETE_TARGET_FILES = '**/.env';
-            process.env.DONT_OVERRIDE_TARGET_FILES = '**/.env';
+            process.env.PLUGIN_DONT_DELETE_TARGET_FILES = '**/.env';
+            process.env.PLUGIN_DONT_OVERRIDE_TARGET_FILES = '**/.env';
 
             const plan = await createPlan(sourceFs, targetFs, '/test/source', '/test/target');
 

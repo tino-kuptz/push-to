@@ -20,20 +20,20 @@ This way you prevent html files to refer to already deleted assets, or html file
 ## Testing first
 Set this one:
 ```ini
-DRY_RUN=true
+PLUGIN_DRY_RUN=true
 ```
 It won't change anything on the remote side, just pretend to do so. If you set the logging level to debug, it will tell you things it would have done.
 ## Debugging
 In case one needs it:
 ```ini
-LOG_LEVEL=debug
+PLUGIN_LOG_LEVEL=debug
 ```
 Can be any of `trace`, `debug`, `info`, `warn`, `error`.  
 Default: `info`
 ## Assets
 You can define extensions that count as assets; e.g. in case you upload a node.js application and don't wannt js files to count as asset.
 ```ini
-ASSETS_EXTENSIONS=jpg,jpeg,svg,css,...
+PLUGIN_ASSETS_EXTENSIONS=jpg,jpeg,svg,css,...
 ```
 See `lib/createPlan`, function `getAssetExtensions()` for what extensions count as asset per default.
 ## Keep remote files
@@ -46,7 +46,7 @@ But it will **override** them, when present in source.
 
 Usage example:
 ```ini
-DONT_DELETE_TARGET_FILES=**/.env,backup/**
+PLUGIN_DONT_DELETE_TARGET_FILES=**/.env,backup/**
 ```
 This will keep all `.env` files and everything in the backup folder
 ### Don't override
@@ -55,7 +55,7 @@ It won't delete them in case the source file is present, and it won't override t
 
 Usage example:
 ```ini
-DONT_OVERRIDE_TARGET_FILES=**/.env
+PLUGIN_DONT_OVERRIDE_TARGET_FILES=**/.env
 ```
 This will keep all env files present on the remote site.  
 In case there are local `.env` files that do also exist on the remote site, they won't be uploaded.  
@@ -78,23 +78,23 @@ These patterns apply to both, "don't delete" and "don't override".
 ## Directory
 ### as source
 ```ini
-SOURCE=dist
+PLUGIN_SOURCE=dist
 ```
 ### as target
 ```ini
-TARGET=/drone/src/target
+PLUGIN_TARGET=/drone/src/target
 ```
 ## FTP
 FTP over a **unencrypted** connection
 ### as source
 ```ini
-SOURCE=ftp://example.com/httpdocs/prod
+PLUGIN_SOURCE=ftp://example.com/httpdocs/prod
 SOURCE_USERNAME=test
 SOURCE_PASSWORD=i.am.secure
 ```
 ### as target
 ```ini
-TARGET=ftp://example.com:21
+PLUGIN_TARGET=ftp://example.com:21
 TARGET_USERNAME=test
 TARGET_PASSWORD=i.am.secure
 ```
@@ -103,14 +103,14 @@ FTP over an **encrypted** connection.
 Similar to ftp, except for the additional property `IGNORE_SSL_TRUST` (default: `false`).
 ### as source
 ```ini
-SOURCE=ftps://example.com:21/httpdocs/prod
+PLUGIN_SOURCE=ftps://example.com:21/httpdocs/prod
 SOURCE_USERNAME=test
 SOURCE_PASSWORD=i.am.secure
 # SOURCE_IGNORE_SSL_TRUST=false
 ```
 ### as target
 ```ini
-TARGET=ftps://example.com/release
+PLUGIN_TARGET=ftps://example.com/release
 TARGET_USERNAME=test
 TARGET_PASSWORD=i.am.secure
 TARGET_IGNORE_SSL_TRUST=true
@@ -119,13 +119,13 @@ TARGET_IGNORE_SSL_TRUST=true
 SSH file transfer
 ### as source
 ```ini
-SOURCE=sftp://example.com:22/httpdocs/prod
+PLUGIN_SOURCE=sftp://example.com:22/httpdocs/prod
 SOURCE_USERNAME=test
 SOURCE_PASSWORD=i.am.secure
 ```
 ### as target
 ```ini
-TARGET=sftp://example.com
+PLUGIN_TARGET=sftp://example.com
 TARGET_USERNAME=test
 TARGET_PASSWORD=i.am.secure
 ```
