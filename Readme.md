@@ -76,41 +76,56 @@ Examples:
 These patterns apply to both, "don't delete" and "don't override".
 # Connection methods
 ## Directory
-Can be used to handle 
-
+### as source
+```ini
+SOURCE=dist
+```
+### as target
+```ini
+TARGET=/drone/src/target
+```
 ## FTP
-FTP over a **non encrypted** connection
-
+FTP over a **unencrypted** connection
 ### as source
 ```ini
 SOURCE=ftp://example.com/httpdocs/prod
 SOURCE_USERNAME=test
 SOURCE_PASSWORD=i.am.secure
 ```
-
 ### as target
 ```ini
 TARGET=ftp://example.com:21
 TARGET_USERNAME=test
 TARGET_PASSWORD=i.am.secure
 ```
-
 ## FTPS
 FTP over an **encrypted** connection.  
 Similar to ftp, except for the additional property `IGNORE_SSL_TRUST` (default: `false`).
-
 ### as source
 ```ini
-SOURCE=ftp://example.com:21/httpdocs/prod
+SOURCE=ftps://example.com:21/httpdocs/prod
 SOURCE_USERNAME=test
 SOURCE_PASSWORD=i.am.secure
 # SOURCE_IGNORE_SSL_TRUST=false
 ```
-
 ### as target
 ```ini
-TARGET=ftp://example.com:21
+TARGET=ftps://example.com/release
 TARGET_USERNAME=test
 TARGET_PASSWORD=i.am.secure
 TARGET_IGNORE_SSL_TRUST=true
+```
+## SFTP
+SSH file transfer
+### as source
+```ini
+SOURCE=sftp://example.com:22/httpdocs/prod
+SOURCE_USERNAME=test
+SOURCE_PASSWORD=i.am.secure
+```
+### as target
+```ini
+TARGET=sftp://example.com
+TARGET_USERNAME=test
+TARGET_PASSWORD=i.am.secure
 ```
