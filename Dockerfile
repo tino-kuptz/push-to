@@ -21,12 +21,9 @@ RUN npm install
 # 4) set working directory to /drone/src
 # 5) set default command to run node with index.js
 FROM alpine:latest AS release
-RUN apk add --no-cache nodejs npm
-RUN addgroup -g 1000 node && \
-    adduser -D -s /bin/sh -u 1000 -G node node
+RUN apk add --no-cache nodejs
 
-COPY --chown=node:node --from=builder /app/dist .
+COPY --from=builder /app/dist /home/node
 
-USER node
 WORKDIR /drone/src
 CMD ["node", "/home/node/index.js"]
