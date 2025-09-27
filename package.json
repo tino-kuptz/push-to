@@ -1,0 +1,43 @@
+{
+  "name": "push-to",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Push drone ci builds to a remote site",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js | pino-pretty",
+    "test": "LOG_LEVEL=error mocha test/**/*.test.js --recursive",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tino-kuptz/push-to.git"
+  },
+  "keywords": [
+    "Drone",
+    "CI",
+    "FTP",
+    "SFTP",
+    "FTPS"
+  ],
+  "author": "Tino Kuptz <tino@kup.tz>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tino-kuptz/push-to/issues"
+  },
+  "homepage": "https://github.com/tino-kuptz/push-to#readme",
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "ftp": "^0.3.10",
+    "pino": "^9.11.0",
+    "ssh2": "^1.15.0",
+    "ssh2-sftp-client": "^10.0.3"
+  },
+  "devDependencies": {
+    "chai": "^6.2.0",
+    "mocha": "^11.7.2",
+    "pino-pretty": "^13.1.1",
+    "webpack": "^5.101.3",
+    "webpack-cli": "^6.0.1"
+  }
+}
