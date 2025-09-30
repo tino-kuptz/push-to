@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 
 const keepModules = [
-    'ssh2',
+    'ssh2'
 ];
 
 const fullPath = path.resolve(import.meta.dirname, 'dist');
@@ -34,6 +34,7 @@ console.log(' - cleaning up dependencies');
 const dependencies = {};
 for (const module of keepModules) {
     dependencies[module] = currentPackageJson.dependencies[module];
+    console.log(' - keeping: '+ module +' '+ currentPackageJson.dependencies[module]);
 }
 currentPackageJson.dependencies = dependencies;
 console.log(' - writing');
@@ -47,7 +48,10 @@ export default {
     entry: entryPath,
     target: 'node',
     mode: 'production',
-    externals,
+    externals: {
+        ...externals,
+        'pino-pretty': 'pino-pretty',
+    },
     externalsPresets: {
         node: true,
     },

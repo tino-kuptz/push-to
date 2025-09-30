@@ -8,7 +8,7 @@
 FROM alpine:latest AS builder
 RUN apk add --no-cache nodejs npm
 WORKDIR /app
-COPY package*.json ./
+COPY package.json ./
 RUN npm install
 COPY . .
 RUN npm run build
@@ -24,8 +24,14 @@ FROM alpine:latest AS release
 RUN apk add --no-cache nodejs npm
 
 WORKDIR /home/node
+
+COPY --from=builder /app/start.sh /home/node
+RUN chmod +x /home/node/start.sh
+
+COPY --from=builder /app/dist/package.json /home/node
+RUN npm install && npm install -g pino-pretty
+
 COPY --from=builder /app/dist /home/node
-RUN npm install
 
 WORKDIR /drone/src
-CMD ["node", "/home/node/index.js"]
+CMD ["/home/node/start.sh"]
