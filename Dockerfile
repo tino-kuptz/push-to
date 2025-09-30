@@ -5,10 +5,9 @@
 # 4) run webpack build
 # Webpack will exclude native modules. As npm install will only
 # be rune once in multi platform build, we dont install production dependencies here
-FROM alpine:latest AS builder
-RUN apk add --no-cache nodejs npm
+FROM node:22-alpine3.22 AS builder
 WORKDIR /app
-COPY package.json ./
+COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
@@ -20,14 +19,12 @@ RUN npm run build
 #    --> this will be done here so the correct architecture is used
 # 4) set working directory to /drone/src
 # 5) set default command to run node with index.js
-FROM alpine:latest AS release
-RUN apk add --no-cache nodejs npm
-
-WORKDIR /home/node
+FROM node:22-alpine3.22 AS release
 
 COPY --from=builder /app/start.sh /home/node
 RUN chmod +x /home/node/start.sh
 
+WORKDIR /home/node
 COPY --from=builder /app/dist/package.json /home/node
 RUN npm install && npm install -g pino-pretty
 
